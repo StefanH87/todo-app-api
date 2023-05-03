@@ -1,0 +1,65 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+:root {
+  margin: 0;
+  padding: 0;
+  --clr-body: linear-gradient(to bottom, rgb(24, 23, 23), rgb(48, 48, 48));
+  --dark-grey: #121212;
+  --mid-grey: rgb(69, 69, 70, 0.5);
+  --light-grey: #949494;
+  --white-primary: #e1dfe3;
+
+  --highlight-color: #03dac6;
+
+  --clr-bkg: var(--dark-grey);
+  --clr-surface: var(--mid-grey);
+  --clr-font: var(--white-primary);
+
+  --clr-secondary: var(--highlight-color);
+}
+html {
+  width: 100vw;
+  height: 100vh;
+}
+body {
+  width: 100%;
+  height: 100%;
+  background: var(--clr-body);
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  width: 50%;
+  height: max-content;
+  margin-inline: auto;
+  background: var(--clr-bkg);
+  display: grid;
+  grid-template-columns:
+    minmax(10px, 1fr)
+    [content-start] minmax(auto, 80rem) [content-end]
+    minmax(10px, 1fr);
+}
+main > * {
+  grid-column: content-start;
+}
+
+form {
+  background: var(--clr-surface);
+  display: flex;
+  flex-direction: column;
+  margin-inline: auto;
+  width: 95%;
+}
+
+h1,
+h2 {
+  color: var(--clr-secondary);
+}
+button,
+label {
+  color: var(--light-grey);
+}
