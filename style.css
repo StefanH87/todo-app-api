@@ -6,19 +6,24 @@
 :root {
   margin: 0;
   padding: 0;
-  --clr-body: linear-gradient(to bottom, rgb(24, 23, 23), rgb(48, 48, 48));
+  --clr-body: linear-gradient(to right, rgb(24, 23, 23), rgb(41, 41, 41));
   --dark-grey: #121212;
   --mid-grey: rgb(69, 69, 70, 0.5);
   --light-grey: #949494;
   --white-primary: #e1dfe3;
 
-  --highlight-color: #03dac6;
+  --highlight-color-dark: #ff7b00;
+  --highlight-color-mid: #ff9500;
+  --highlight-color-light: #ffc300;
 
   --clr-bkg: var(--dark-grey);
   --clr-surface: var(--mid-grey);
   --clr-font: var(--white-primary);
 
-  --clr-secondary: var(--highlight-color);
+  --clr-secondary: var(--highlight-color-mid);
+
+  font-family: "Roboto", sans-serif;
+  --s-font: 1rem;
 }
 html {
   width: 100vw;
@@ -64,19 +69,57 @@ label {
   color: var(--light-grey);
 }
 
-li {
-  background: red;
-  font-size: 1.3rem;
-  padding-block: 0.5rem;
-  list-style-type: none;
-}
-ul {
+.todo__list {
   padding-left: 0;
   width: 95%;
   margin-inline: auto;
 }
-li > label {
-  background: green;
-  border: 2px solid green;
+
+.todo__list:has(li) > li {
+  display: inline-flex;
+  align-items: center;
   width: 100%;
+  background: var(--clr-surface);
+  font-size: 1.3rem;
+  margin-block: 0.3rem;
+  padding-left: 0.6rem;
+
+  list-style-type: none;
+}
+
+li > label {
+  width: 100%;
+  margin-left: 1rem;
+  padding-block: 0.5rem;
+}
+
+/*==========================================================*/
+/*                  Checkbox                                */
+/*==========================================================*/
+
+input[type="checkbox"] {
+  all: unset;
+  position: relative;
+  display: block;
+  height: calc(var(--s-font) + calc(var(--s-font) / 2));
+  width: calc(var(--s-font) + calc(var(--s-font) / 2));
+
+  border: 1px solid var(--highlight-color-light);
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -2px;
+
+  display: block;
+  height: calc(var(--s-font) + calc(var(--s-font) / 1));
+  width: calc(var(--s-font) + calc(var(--s-font) / 1));
+  background: var(--highlight-color-light);
+  clip-path: polygon(0% 60%, 40% 100%, 100% 5%, 90% 0%, 40% 80%, 5% 50%);
+}
+
+input[type="checkbox"]:checked ~ input[type="checkbox"]::before {
+  background: red;
 }

@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Todo App with API</title>
 </head>
@@ -16,7 +18,8 @@
         <h1>Your Todos</h1>
 
         <form action="" id="todo__input">
-            <input type="text" name="" id="text__input">
+            <input type="text" name="" id="text__input" minlength="1" placeholder="Neues Todo" required
+                pattern="[A-Za-z0-9]{1,20}">
             <button class="add__btn">Add</button>
         </form>
 
