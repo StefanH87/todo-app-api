@@ -3,6 +3,7 @@
 *::after {
   box-sizing: border-box;
 }
+
 :root {
   margin: 0;
   padding: 0;
@@ -12,18 +13,23 @@
   --light-grey: #949494;
   --white-primary: #e1dfe3;
 
-  --highlight-color-dark: #ff7b00;
-  --highlight-color-mid: #ff9500;
   --highlight-color-light: #ffc300;
+
+  --s-weight: 300;
+  --m-weight: 600;
 
   --clr-bkg: var(--dark-grey);
   --clr-surface: var(--mid-grey);
   --clr-font: var(--white-primary);
+  --clr-input: var(--light-grey);
 
   --clr-secondary: var(--highlight-color-mid);
 
   font-family: "Roboto", sans-serif;
   --s-font: 1rem;
+  --m-font: calc(var(--s-font) * 0.5rem);
+
+  --radius-border: 0.1rem;
 }
 html {
   width: 100vw;
@@ -43,6 +49,7 @@ main {
   margin-inline: auto;
   background: var(--clr-bkg);
   display: grid;
+  margin-top: 2rem;
   grid-template-columns:
     minmax(10px, 1fr)
     [content-start] minmax(auto, 80rem) [content-end]
@@ -51,6 +58,11 @@ main {
 main > * {
   grid-column: content-start;
 }
+input,
+button,
+label {
+  cursor: pointer;
+}
 
 form {
   background: var(--clr-surface);
@@ -58,16 +70,206 @@ form {
   flex-direction: column;
   margin-inline: auto;
   width: 95%;
+  height: 27vh;
+  border-radius: var(--radius-border);
 }
 
 h1,
 h2 {
-  color: var(--clr-secondary);
+  color: var(--highlight-color-light);
+  font-weight: 200;
+  text-transform: uppercase;
+}
+h1 {
+  letter-spacing: 0.1rem;
+  text-align: end;
+  padding-right: 1.3rem;
+  opacity: 0.4;
+}
+h2 {
+  color: var(--clr-font);
+  opacity: 0.5;
+  width: 100%;
+  text-align: center;
+  padding-top: 1rem;
 }
 button,
 label {
   color: var(--light-grey);
 }
+
+/*==========================================================*/
+/*                 Form New Todo                                */
+/*==========================================================*/
+
+#todo__input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-font);
+  padding: 2rem 0 5rem 0;
+  position: relative;
+  height: 100%;
+}
+
+#text__input {
+  all: unset;
+  width: 90%;
+  margin-inline: auto;
+  padding-block: 0.9rem;
+  padding-left: 0.5rem;
+  border-radius: var(--radius-border);
+  background: var(--mid-grey);
+  border: 1px solid var(--clr-surface);
+  color: var(--clr-font);
+}
+#text__input:focus {
+  border: 1px solid var(--highlight-color-light);
+}
+/*==========================================================*/
+/*                 Form New Buttonn Add / Remove                             */
+/*==========================================================*/
+.add__btn,
+#remove__btn {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: 1;
+  font-size: var(--m-font);
+  text-transform: uppercase;
+  width: 40%;
+  padding-block: 0.7rem;
+  margin-inline: auto;
+  border: 1px solid var(--highlight-color-light);
+  border-radius: var(--radius-border);
+  background: transparent;
+  font-weight: var(--m-weight);
+}
+.add__btn::after,
+#remove__btn::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  display: block;
+  background: var(--highlight-color-light);
+  width: 0%;
+  height: 100%;
+  background-image: var(--highlight-color-light);
+  opacity: 0;
+}
+.add__btn:hover::after,
+#remove__btn:hover::after {
+  width: 100%;
+  transition: 0.3s ease-in-out;
+
+  background-image: var(--highlight-color-light);
+  opacity: 1;
+}
+.add__btn:hover,
+#remove__btn:hover {
+  color: var(--clr-bkg);
+  transition: 1s;
+  font-weight: var(--m-weight);
+}
+.btn__wrapper {
+  position: relative;
+
+  width: 90%;
+  height: 100%;
+  margin-top: 1rem;
+  margin-inline: auto;
+  display: block;
+}
+#remove__btn {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: 1;
+  font-size: var(--m-font);
+  text-transform: uppercase;
+  width: 45%;
+  padding-block: 0.7rem;
+  margin-inline: auto;
+  border: 1px solid var(--highlight-color-light);
+  border-radius: var(--radius-border);
+  background: transparent;
+  font-weight: var(--m-weight);
+}
+
+/*==========================================================*/
+/*                 Radios                             */
+/*==========================================================*/
+
+input[type="radio"] {
+  appearance: none;
+  position: relative;
+  display: block;
+  width: 3rem;
+  height: 1.5rem;
+  border: 1px solid var(--clr-input);
+  opacity: 0.6;
+}
+input[type="radio"]::after {
+  content: "";
+  position: absolute;
+  top: 9%;
+  left: 5%;
+  display: block;
+  width: 1.2rem;
+  height: 1.1rem;
+  background: var(--clr-input);
+}
+input[type="radio"]:checked {
+  border: 1px solid var(--highlight-color-light);
+  opacity: 1;
+}
+input[type="radio"]:checked:after {
+  left: 55%;
+  transition: 0.2s ease-out;
+  background: var(--highlight-color-light);
+}
+input[type="radio"] ~ label {
+  border-bottom: 1px solid transparent;
+  height: 100%;
+
+  font-weight: var(--s-weight);
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+input[type="radio"]:checked ~ label {
+  border-bottom: 1px solid var(--highlight-color-light);
+  opacity: 1;
+}
+.radio__wrapper {
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: transparent;
+  width: 90%;
+  margin-inline: auto;
+  padding-block: 2rem;
+  margin-top: -1rem;
+}
+.radio__wrapper:hover {
+  background-color: var(--clr-surface);
+
+  transition: 0.3s ease-in-out;
+}
+
+.radio__box {
+  display: inline-flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/*==========================================================*/
+/*                 List                               */
+/*==========================================================*/
 
 .todo__list {
   padding-left: 0;
@@ -83,14 +285,21 @@ label {
   font-size: 1.3rem;
   margin-block: 0.3rem;
   padding-left: 0.6rem;
-
+  border-radius: var(--radius-border);
   list-style-type: none;
+  border: 1px solid transparent;
+}
+
+ul > li:hover {
+  border: 1px solid var(--highlight-color-light);
 }
 
 li > label {
   width: 100%;
   margin-left: 1rem;
-  padding-block: 0.5rem;
+  padding-block: 0.8rem;
+  font-weight: var(--s-weight);
+  font-size: var(--s-font);
 }
 
 /*==========================================================*/
@@ -98,9 +307,10 @@ li > label {
 /*==========================================================*/
 
 input[type="checkbox"] {
-  all: unset;
+  appearance: none;
   position: relative;
   display: block;
+  border-radius: var(--radius-border);
   height: calc(var(--s-font) + calc(var(--s-font) / 2));
   width: calc(var(--s-font) + calc(var(--s-font) / 2));
 
@@ -110,16 +320,25 @@ input[type="checkbox"] {
 input[type="checkbox"]::before {
   content: "";
   position: absolute;
-  top: -3px;
-  left: -2px;
+  top: 0px;
+  left: 0px;
 
   display: block;
-  height: calc(var(--s-font) + calc(var(--s-font) / 1));
-  width: calc(var(--s-font) + calc(var(--s-font) / 1));
+  height: calc(var(--s-font) + calc(var(--s-font) / 2.5));
+  width: calc(var(--s-font) + calc(var(--s-font) / 2.5));
   background: var(--highlight-color-light);
-  clip-path: polygon(0% 60%, 40% 100%, 100% 5%, 90% 0%, 40% 80%, 5% 50%);
+  clip-path: polygon(0% 60%, 40% 100%, 100% 0%, 80% 0%, 35% 70%, 5% 40%);
+  opacity: 0;
+}
+input[type="checkbox"]:checked {
+  background: var(--highlight-color-light);
+  border: 1px solid var(--highlight-color-light);
+}
+input[type="checkbox"]:checked::before {
+  background: var(--clr-bkg);
+  opacity: 1;
 }
 
-input[type="checkbox"]:checked ~ input[type="checkbox"]::before {
-  background: red;
+input[type="checkbox"]:checked ~ label {
+  opacity: 0.3;
 }
