@@ -232,15 +232,15 @@ input[type="radio"]:checked:after {
   background: var(--highlight-color-light);
 }
 input[type="radio"] ~ label {
-  border-bottom: 1px solid transparent;
+  border-left: 1px solid transparent;
   height: 100%;
-
+  padding-left: 0.4rem;
   font-weight: var(--s-weight);
   text-transform: uppercase;
   opacity: 0.6;
 }
 input[type="radio"]:checked ~ label {
-  border-bottom: 1px solid var(--highlight-color-light);
+  border-left: 1px solid var(--highlight-color-light);
   opacity: 1;
 }
 .radio__wrapper {
