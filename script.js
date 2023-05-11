@@ -67,6 +67,7 @@ function renderHTML() {
     newLabel.appendChild(todoTxt);
 
     newLi.append(newCheckbox, newLabel);
+    newLi.classList.add("todo__item");
     todoList.appendChild(newLi);
   });
 }

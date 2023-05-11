@@ -125,6 +125,9 @@ label {
 #text__input:focus {
   border: 1px solid var(--highlight-color-light);
 }
+#text__input:hover {
+  border: 1px solid var(--light-grey);
+}
 /*==========================================================*/
 /*                 Form New Buttonn Add / Remove                             */
 /*==========================================================*/
@@ -162,7 +165,7 @@ label {
 .add__btn:hover::after,
 #remove__btn:hover::after {
   width: 100%;
-  transition: 0.3s ease-in-out;
+  transition: 0.2s ease-in-out;
 
   background-image: var(--highlight-color-light);
   opacity: 1;
@@ -170,7 +173,7 @@ label {
 .add__btn:hover,
 #remove__btn:hover {
   color: var(--clr-bkg);
-  transition: 1s;
+  transition: 0.7s;
   font-weight: var(--m-weight);
 }
 .btn__wrapper {
@@ -277,7 +280,7 @@ input[type="radio"]:checked ~ label {
   margin-inline: auto;
 }
 
-.todo__list:has(li) > li {
+.todo__list:has(li) > .todo__item {
   display: inline-flex;
   align-items: center;
   width: 100%;
@@ -290,11 +293,11 @@ input[type="radio"]:checked ~ label {
   border: 1px solid transparent;
 }
 
-ul > li:hover {
+ul > .todo__item:hover {
   border: 1px solid var(--highlight-color-light);
 }
 
-li > label {
+.todo__item > label {
   width: 100%;
   margin-left: 1rem;
   padding-block: 0.8rem;
